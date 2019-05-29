@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.laboratoriaimg {
+    margin-top: 25%;
+    margin-left: 29%; 
+}
+
+.side1 {
+    background-color: #fff;
+    height: 50rem;
+    width: 50%;
+}
+
+.side2 {
+    background-color: black;
+    float: right;
+    height: 50rem;
+    margin-top: -56.2%;
+}
+
+.labimg {
+    height: 5%;
+    width: 40%;
+    margin-top: 5%;
+}
+
+.imgAttendance {
+    width: 24%;
+    margin-top: 20%;
+    margin-left: 40%;
+    border: black;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.grafica {
+    height: 10px;
+    width: 20px;
+    border-radius: 10%;
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    -ms-border-radius: 10;
+    -o-border-radius: 10;
+}
+
+hr{
+    margin-left: 38%;   
+}
+
+.btnAttendance {
+    background-color: #fff;
+    height: 70%;
+    width: 20%;
+    border: none;
+    font-size: 30px;
+    margin-left: 42%;
+}
+
+.btnAttendance2 {
+    background-color: #fff;
+    height: 70%;
+    width: 25%;
+    border: none;
+    font-size: 30px;
+    margin-left: 40%;
+}
