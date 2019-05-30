@@ -78,6 +78,10 @@ hr {
     color: #fff;
 }
 
+.line {
+    margin-right: 80%;
+}
+
 /* Tercer Pantalla */
 
 .codeQr {
@@ -111,6 +115,8 @@ hr {
     margin-left: 79%;
     display: inline-block;
 }
+
+/* Cuarta Pantalla */
 
 .date {
     font-family: 'Open Sans', serif;
@@ -168,3 +174,4 @@ hr {
     font-size: 20px;
     text-decoration: underline;
 }
+
