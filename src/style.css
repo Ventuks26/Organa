@@ -3,10 +3,21 @@
     padding: 0;
 }
 
-.laboratoriaimg {
-    margin-top: 25%;
-    margin-left: 29%; 
+body {
+    background-color: #ffe420;
+    height: 100vh;
 }
+
+/* Primer pantalla */
+
+.laboratoriaimg {
+    height: 15%;
+    width: 35%;
+    margin-top: 23%;
+    margin-left: 33%; 
+}
+
+/* Segunda Pantalla */
 
 .side1 {
     background-color: #fff;
@@ -27,46 +38,133 @@
     margin-top: 5%;
 }
 
-.imgAttendance {
-    width: 24%;
-    margin-top: 20%;
-    margin-left: 40%;
-    border: black;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+.blackL {
+   width: 30%;
+   display: inline-block;
+   margin-top: 35%;
+   margin-left: 35%;
 }
 
-.grafica {
-    height: 10px;
-    width: 20px;
-    border-radius: 10%;
-    -webkit-border-radius: 10;
-    -moz-border-radius: 10;
-    -ms-border-radius: 10;
-    -o-border-radius: 10;
+.whiteL {
+    width: 30%;
+    margin-top: 35%;
+    margin-left: 35%;
+
+ }
+
+.title {
+    font-family: 'Bitter', serif;
+    font-size: 60px;
+
 }
 
-hr{
-    margin-left: 38%;   
+hr {
+    width: 35%;
+    margin-left: 32%;
+    margin-bottom: -1%;
+    margin-top: 1%;
 }
 
-.btnAttendance {
+.subtitle {
+    font-family: 'Open Sans', serif;
+    font-size: 23px;
+}
+
+.h1 {
+    margin-top: 6%;
+}
+
+.blackSide {
+    color: #fff;
+}
+
+/* Tercer Pantalla */
+
+.codeQr {
+    width: 42%;
+    margin-top: -30%;
+    margin-left: 29%;
+}
+
+.imgLBlack {
+    width: 6%;
+    margin-top: 3%;
+    margin-left: 4%
+}
+
+.x {
+    width: 2%;
+    margin-top: -5%;
+    margin-left: 93%;
+} 
+
+.flecha1 {
+    width: 10%;
+    margin-top: 10%;
+    margin-left: 10%;
+    display: inline-block;
+}
+
+.flecha2 {
+    width: 10%;
+    margin-top: -31%;
+    margin-left: 79%;
+    display: inline-block;
+}
+
+.date {
+    font-family: 'Open Sans', serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.card1 {
+    height: 25%;
+    width: 55%;
     background-color: #fff;
-    height: 70%;
-    width: 20%;
-    border: none;
-    font-size: 30px;
-    margin-left: 42%;
+    margin-left: 22%;
+    margin-top: 3%;
 }
 
-.btnAttendance2 {
+.textCard {
+    font-family: 'Open Sans', serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 6%;
+}
+
+.attendance {
+    font-family: 'Open Sans', serif;
+    font-size: 50px;
+    margin-bottom: 1%;
+    margin-top: 4%;
+}
+
+.card2 {
+    height: 25%;
+    width: 17%;
+    margin-top: 4%;
+    margin-left: 22%;
     background-color: #fff;
-    height: 70%;
-    width: 25%;
-    border: none;
-    font-size: 30px;
-    margin-left: 40%;
+}
+
+.card3 {
+    height: 25%;
+    width: 17%;
+    margin-top: -13%;
+    margin-left: 41%;
+    background-color: #fff;
+}
+.card4 {
+    height: 25%;
+    width: 17%;
+    margin-top: -13.2%;
+    margin-left: 60%;
+    background-color: #fff;
+}
+
+.more {
+    font-family: 'Open Sans', serif;
+    font-size: 20px;
+    text-decoration: underline;
 }
