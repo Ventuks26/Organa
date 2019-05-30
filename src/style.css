@@ -21,15 +21,16 @@ body {
 
 .side1 {
     background-color: #fff;
-    height: 50rem;
-    width: 50%;
+    height: 43rem;
+    margin-top: 0%;
+
 }
 
 .side2 {
     background-color: black;
     float: right;
-    height: 50rem;
-    margin-top: -56.2%;
+    height: 43rem;
+    margin-top: -52.15%;
 }
 
 .labimg {
@@ -91,15 +92,15 @@ hr {
 }
 
 .imgLBlack {
-    width: 6%;
+    width: 15%;
     margin-top: 3%;
-    margin-left: 4%
+    margin-left: 4%;
 }
 
 .x {
-    width: 2%;
-    margin-top: -5%;
-    margin-left: 93%;
+    width: 5%;
+    margin-top: %;
+
 } 
 
 .flecha1 {
