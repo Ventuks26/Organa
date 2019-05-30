@@ -1,4 +1,3 @@
-
 let firebaseConfig = {
   apiKey: "AIzaSyADMDtczUN4mRNlYsZB68auRUh8eE5gHhU",
   authDomain: "organa-7b8ec.firebaseapp.com",
@@ -120,6 +119,3 @@ snapshotToArray = (snapshot) => {
     console.log(JSON.stringify (objRole));
     return objRole;
   };
-
-
-
