@@ -1,4 +1,4 @@
-var firebaseConfig = {
+let firebaseConfig = {
   apiKey: "AIzaSyADMDtczUN4mRNlYsZB68auRUh8eE5gHhU",
   authDomain: "organa-7b8ec.firebaseapp.com",
   databaseURL: "https://organa-7b8ec.firebaseio.com",
@@ -10,85 +10,112 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//   // Initialize Cloud Firestore through Firebase
+//Get actual date
+let today= new Date();
+       let date = today.getDate() + '-'+ (today.getMonth()+1)+'-' + today.getFullYear();
+        let hour = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        let getHours = today.getHours();
+        let listDelay=[];
+//Get data from Laboratoria firebase
+        fetch('https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users')
+        .then(function(response) {
+          return response.json();
+        }). then ((myJson)=>{
+          attendance(myJson);
+          list("delay", " retraso", " ");
+          list("onTime", " a tiempo", " ")
+          let data= myJson.length;
+          list("attendance", " de ", data)
 
-let data = [
-  { name: "María Ventura García Serrano ", attendance: "" },
-  { name: "Martha Nathalie Cortez Chávez", attendance: "" },
-  { name: "Juan", attendance: "" }
-];
+        }).then((myJson)=>{
+         
+        });
 
-const attendance = myJson => {
-  let scanner = new Instascan.Scanner({
-    video: document.getElementById("preview")
-  });
-  let attendance = [];
-  let delay = [];
-  scanner.addListener("scan", function(content) {
-    var today = new Date();
-    // var fecha = today.getDate() + '-'+ (today.getMonth()+1)+'-' + today.getFullYear();
-    var hour =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var getHours = today.getHours();
-    alert("Bienvenida " + content + " llegaste a las " + hour);
-    if (getHours < 8) {
-      console.log("a tiempo");
-      attendance.push(student.name);
-      console.log(attendance);
-    } else {
-      console.log("tarde");
-      delay.push(content);
-      writeUserData(delay);
+//Start scanQR
+let attendanceList = [];
+attendance=(myJson)=>{
+  let welcomeMessage= document.getElementById("welcome-message");
+let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+        scanner.addListener('scan', function (name) { 
+          let student = myJson.find(item => item.name === name);
+          console.log(student)
+          let studentInList = attendanceList.find(item => item === name);
+          if (studentInList!=undefined){
+            welcomeMessage.innerHTML= "Ya estas registrada";
+          }else {
+            attendanceList.push(name)
+        welcomeMessage.innerHTML = "Bienvenida " + name + " llegaste a las " + hour;
+          if (getHours < 8){
+            dataToFireabase("onTime", date, student);
+            dataToFireabase("attendance", date, student);
+        }else {
+          dataToFireabase("delay", date, student);
+          dataToFireabase("attendance", date, student);
+          
+        }
+          }
+      });
+     
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
     }
-  });
-
-  Instascan.Camera.getCameras()
-    .then(function(cameras) {
-      if (cameras.length > 0) {
-        scanner.start(cameras[0]);
-      } else {
-        console.error("No cameras found.");
-      }
-    })
-    .catch(function(e) {
-      console.error(e);
-    });
-};
-
-var db = firebase.firestore();
+//End scanQR
 
 //Upload data to firebase
-writeUserData = delay => {
-  firebase
-    .database()
-    .ref("delay")
-    .set(delay);
-  console.log(delay);
-};
+dataToFireabase=(ref, date,student)=>{
+  let list =firebase
+  .database()
+  .ref(ref);
+  list.child(date).child(Date.now()).set(student);
+}
 
-fetch(
-  "https://laboratoria-la.firebaseapp.com/cohorts/gdl-2019-01-bc-core-gdl-002/users"
-)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(myJson => {
-    console.log("done");
-    // writeUserData(myJson);
-    statistics(myJson);
-    attendance(myJson);
+let number="";
+//Get data from Firebase
+list=(object, timer, data)=>{
+
+  let ref = firebase.database().ref(object).child(date);
+  ref.on("value", snapshot => {
+    listDelay= snapshotToArray(snapshot);
+    document.getElementById(object).innerHTML=listDelay.length+ timer +data;
+    console.log(listDelay.length + timer + data);
+    number=listDelay.length;
+  });
+}
+
+
+//Convert firebase object to array
+snapshotToArray = (snapshot) => {
+  let returnArr = [];
+  snapshot.forEach(function(childSnapshot) {
+    let item = childSnapshot.val();
+    item.key = childSnapshot.key;
+    returnArr.push(item);
   });
 
-const statistics = myJson => {
-  const objRole = {};
-  for (let i = 0; i < myJson.length; i++) {
-    if (objRole.hasOwnProperty(myJson[i].role)) {
-      objRole[myJson[i].role] += 1;
-    } else {
-      objRole[myJson[i].role] = 1;
-    }
-  }
-
-  console.log(JSON.stringify(objRole));
-  return objRole;
+  return returnArr;
 };
+    var db = firebase.firestore();
+ 
+  
+//Get roles
+  const statistics = (myJson) => {
+    const objRole = {};
+    for(let i = 0; i < myJson.length; i++){
+    
+        if(objRole.hasOwnProperty(myJson[i].role)){
+          objRole[myJson[i].role]+= 1;
+        } else {
+          objRole[myJson[i].role] = 1;
+        }
+      }
+    
+    console.log(JSON.stringify (objRole));
+    return objRole;
+  };
