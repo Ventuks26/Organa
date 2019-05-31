@@ -137,6 +137,13 @@ hr {
     margin-top: -1%;
 }
 
+.message {
+    font-family: 'Open Sans', serif;
+    font-size: 30px;
+    margin-top: -12%;
+
+}
+
 /* Cuarta Pantalla */
 
 .date {
