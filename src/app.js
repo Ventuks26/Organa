@@ -26,9 +26,8 @@ let today= new Date();
          let studentsTotal= statistics(myJson);
          console.log(studentsTotal)
           attendance(myJson);
-          list("delay", " retraso", " ");
+          list("delay", " ", " ");
           let data=myJson.length-(-studentsTotal+ myJson.length) ;
-    document.getElementById("dontAttendance").innerHTML=data-attendanceList.length;
     console.log("Hola")
           
           list("attendance", " de ", data)
