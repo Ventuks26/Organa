@@ -10,6 +10,8 @@ let firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+let attendanceList = [];
+
 //Get actual date
 let today= new Date();
        let date = today.getDate() + '-'+ (today.getMonth()+1)+'-' + today.getFullYear();
@@ -21,24 +23,27 @@ let today= new Date();
         .then(function(response) {
           return response.json();
         }). then ((myJson)=>{
+         let studentsTotal= statistics(myJson);
+         console.log(studentsTotal)
           attendance(myJson);
           list("delay", " retraso", " ");
-          list("onTime", " a tiempo", " ")
-          let data= myJson.length;
+          let data=myJson.length-(-studentsTotal+ myJson.length) ;
+    document.getElementById("dontAttendance").innerHTML=data-attendanceList.length;
+    console.log("Hola")
+          
           list("attendance", " de ", data)
-
+         
         }).then((myJson)=>{
          
         });
 
 //Start scanQR
-let attendanceList = [];
+
 attendance=(myJson)=>{
   let welcomeMessage= document.getElementById("welcome-message");
 let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
         scanner.addListener('scan', function (name) { 
           let student = myJson.find(item => item.name === name);
-          console.log(student)
           let studentInList = attendanceList.find(item => item === name);
           if (studentInList!=undefined){
             welcomeMessage.innerHTML= "Ya estas registrada";
@@ -47,9 +52,11 @@ let scanner = new Instascan.Scanner({ video: document.getElementById('preview') 
         welcomeMessage.innerHTML = "Bienvenida " + name + " llegaste a las " + hour;
           if (getHours < 8){
             dataToFireabase("onTime", date, student);
+            attendanceList.push(student)
             dataToFireabase("attendance", date, student);
         }else {
           dataToFireabase("delay", date, student);
+          attendanceList.push(student)
           dataToFireabase("attendance", date, student);
           
         }
@@ -86,6 +93,7 @@ list=(object, timer, data)=>{
     document.getElementById(object).innerHTML=listDelay.length+ timer +data;
     console.log(listDelay.length + timer + data);
     number=listDelay.length;
+   
   });
 }
 
@@ -116,6 +124,6 @@ snapshotToArray = (snapshot) => {
         }
       }
     
-    console.log(JSON.stringify (objRole));
-    return objRole;
+   
+    return objRole.student;
   };
