@@ -28,14 +28,11 @@ let firebaseConfig = {
           attendance(myJson);
           list("delay", " ", " ");
           let data=myJson.length-(-studentsTotal+ myJson.length) ;
-    document.getElementById("dontAttendance").innerHTML=data-attendanceList.length;
-    console.log("Hola")
+ 
  
           list("attendance", " de ", data)
  
-        }).then((myJson)=>{
- 
-        });
+        })
  
  //Start scanQR
  
